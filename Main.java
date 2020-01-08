@@ -1,5 +1,7 @@
 package TerminalGame;
 
+// javac *.java
+// java -cp ../ TerminalGame.Main
 
 public class Main {
 

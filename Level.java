@@ -142,15 +142,17 @@ public class Level implements Iterable {
 	public List<Field> findPathFromAToB(Field a, Field b) {
 		List<Field> n = this.getNeighbors(b);
 		//this.findPathFromAToB(a, b, []);
+		return n;
 	}
 
 	
 	private List<Field> findPathFromAToB(Field a, Field b, Collection<Field> markedFields) {
+		return new ArrayList<Field>();
 	}
 
 	
 	@Override
 	public Iterator<Field> iterator() {
-		FieldIterator iterator = FieldIterator(this);
+		return new FieldIterator(this);
 	}
 }

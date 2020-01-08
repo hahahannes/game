@@ -28,17 +28,22 @@ public class FieldIterator implements Iterator {
         } else {
             this.x += 1;
         }
-        this.y += 1;
-        return Field(this.x, this.y);
+        // this.y += 1;
+        if(this.x == this.level.getWidth()-1) {
+            this.y += 1;
+        }
+        // return new Field(this.x, this.y)
+        return this.level.getField(this.x, this.y);
     }
 
     @Override
     public boolean hasNext() {
+        boolean hasNext = true;
         if(this.y == this.level.getHeight()-1) {
             if(this.x+1 == this.level.getWidth()) {
-                return false;
+                hasNext = false;
             }
         }
-        return true;
+        return hasNext;
     }
 }
