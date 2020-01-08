@@ -140,14 +140,44 @@ public class Level implements Iterable {
 
 	
 	public List<Field> findPathFromAToB(Field a, Field b) {
-		List<Field> n = this.getNeighbors(b);
-		//this.findPathFromAToB(a, b, []);
-		return n;
+		List<Field> path = this.findPathFromAToB(a, b, new ArrayList<Field>());
+		if(path.isEmpty()) {
+			return null;
+		} 
+		path.add(b);
+		return path;
 	}
 
 	
 	private List<Field> findPathFromAToB(Field a, Field b, Collection<Field> markedFields) {
-		return new ArrayList<Field>();
+		List<Field> n = this.getNeighbors(b);
+		List<Field> candidates = new ArrayList<Field>();
+		for(int i=0; i<n.size(); i++) {
+			Field field = n.get(i);
+			if(field.isStart()) {
+				List<Field> start = new ArrayList<Field>();
+				start.add(field);
+				return start;
+			}
+			if(!field.isWall() && !markedFields.contains(field)) {
+				candidates.add(field);
+			}
+			markedFields.add(field);
+		}
+		if(candidates.isEmpty()) {
+			return new ArrayList<Field>();
+		}
+		
+		List<Field> path = new ArrayList<Field>();
+		for(int i=0; i<candidates.size(); i++) {
+			List<Field> newPath = this.findPathFromAToB(a, candidates.get(i), markedFields);
+			if(!newPath.isEmpty()) {
+				newPath.add(candidates.get(i));
+				path = newPath;
+				break;
+			}
+		}
+		return path;
 	}
 
 	

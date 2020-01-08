@@ -1,6 +1,7 @@
 package TerminalGame;
 
 import java.util.Iterator;
+import java.util.List;
 
 public class Game {
 
@@ -10,10 +11,15 @@ public class Game {
 		int width = (int)(Math.floor(Math.random() * (15 -10 +1) +10));
 		int height = (int)(Math.floor(Math.random() * (15 -10 +1) +10));
 
+		width = 7;
+		height = 7;
 		// TODO: Level erstellen und Wände hinzufügen solange es keinen Weg von Start zu Ziel gibt
 		boolean foundPath = false;
 		while(!foundPath) {
 			level = new Level(width, height);
+			System.out.print(level.toString());
+			List<Field> path = this.level.findPathFromAToB(this.level.getStart(), this.level.getTarget());
+			System.out.print(path);
 			this.addWalls();
 			foundPath = this.level.existsPathFromAToB(this.level.getStart(), this.level.getTarget());
 		}
