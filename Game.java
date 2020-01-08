@@ -12,12 +12,34 @@ public class Game {
 		int height = (int)(Math.floor(Math.random() * (15 -10 +1) +10));
 
 		// TODO: Level erstellen und Wände hinzufügen solange es keinen Weg von Start zu Ziel gibt
-		boolean foundPath = false;
-		while(!foundPath) {
-			level = new Level(width, height);
+		this.level = new Level(width, height);
+		this.addWalls();
+		/*
+		boolean foundPath = true;
+		Level lastLevel = new Level(width, height);
+		while(foundPath) {
+			///lastLevel = level;
+			for(int i=0; i<height; i++) {
+				for(int l=0; l<width; l++) {
+					Field field = this.level.getField(l, i);
+					Field newField = lastLevel.getField(l, i);
+					if(field.isStart()) {
+						newField.markAsStart();
+					} else if (field.isTarget()) {
+						newField.markAsTarget();
+					} else if (field.isWall()) {
+						newField.markAsWall();
+					}
+				}
+			}
 			this.addWalls();
 			foundPath = this.level.existsPathFromAToB(this.level.getStart(), this.level.getTarget());
 		}
+		System.out.println(lastLevel.toString());
+		System.out.println(this.level.toString());
+
+		this.level = lastLevel;
+		*/
 	}
 	
 	private void addWalls() {
