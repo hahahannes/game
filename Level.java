@@ -135,7 +135,7 @@ public class Level implements Iterable {
 	}
 
 	public boolean existsPathFromAToB(Field a, Field b) {
-		return true;
+		return this.findPathFromAToB(a, b) != null;
 	}
 
 	
